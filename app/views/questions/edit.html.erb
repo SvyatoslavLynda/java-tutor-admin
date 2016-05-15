@@ -5,7 +5,7 @@
 
     <p>
       <%= label_tag :body %><br>
-      <%= text_area_tag :body, @question.body %>
+      <%= text_area_tag :body, @question.body, id: 'edit' %>
     </p>
 
     <div><%= submit_tag 'Save' %></div>
