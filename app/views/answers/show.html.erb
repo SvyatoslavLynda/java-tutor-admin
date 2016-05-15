@@ -1,0 +1,11 @@
+<h2>Answer <%= @answer.answer_id %></h2>
+
+<div>
+  <%= link_to 'Edit', "/answers/#{@answer.answer_id}/edit" %>
+  |
+  <%= link_to 'Delete', "/answers/#{@answer.answer_id}", method: :delete %>
+</div>
+
+<pre>
+<%= @answer.body %>
+</pre>

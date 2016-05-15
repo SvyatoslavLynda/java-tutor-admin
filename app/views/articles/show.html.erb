@@ -1,0 +1,38 @@
+<h2><%= @article.title %></h2>
+
+<div>
+  <%= link_to 'Edit', "/articles/#{@article.article_id}/edit" %>
+  |
+  <%= link_to 'Delete', "/articles/#{@article.article_id}", method: :delete %>
+</div>
+
+<pre>
+<%= @article.body %>
+</pre>
+
+<% if @article.questions %>
+    <ul>
+      <% @article.questions.each do |question| %>
+          <li>
+            <%= link_to "Question #{question.question_id}", "/questions/#{question.question_id}" %>
+            |
+            <%= link_to 'Edit', "/questions/#{question.question_id}/edit" %>
+            |
+            <%= link_to 'Delete', "/questions/#{question.question_id}", method: :delete %>
+          </li>
+      <% end %>
+    </ul>
+<% end %>
+
+<h2>Add a question:</h2>
+<%= form_tag('/questions') do %>
+
+    <%= hidden_field_tag :article_id, @article.article_id %>
+
+    <p>
+      <%= label_tag :body %><br>
+      <%= text_area_tag :body %>
+    </p>
+
+    <div><%= submit_tag 'Save' %></div>
+<% end %>

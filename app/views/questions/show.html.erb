@@ -1,0 +1,45 @@
+<h2>Question <%= @question.question_id %></h2>
+
+<div>
+  <%= link_to "Question #{@question.question_id}", "/questions/#{@question.question_id}" %>
+  |
+  <%= link_to 'Edit', "/questions/#{@question.question_id}/edit" %>
+  |
+  <%= link_to 'Delete', "/questions/#{@question.question_id}", method: :delete %>
+</div>
+
+<pre>
+<%= @question.body %>
+</pre>
+
+<% if @question.answers %>
+    <ul>
+      <% @question.answers.each do |answer| %>
+          <li class="<%= answer.correct ? 'correct' : '' %>">
+            <%= link_to "Answer #{answer.answer_id}", "/answers/#{answer.answer_id}" %>
+            |
+            <%= link_to 'Edit', "/answers/#{answer.answer_id}/edit" %>
+            |
+            <%= link_to 'Delete', "/answers/#{answer.answer_id}", method: :delete %>
+          </li>
+      <% end %>
+    </ul>
+<% end %>
+
+<h2>Add an answer:</h2>
+<%= form_tag('/answers') do %>
+
+    <%= hidden_field_tag :question_id, @question.question_id %>
+
+    <p>
+      <%= label_tag :body %><br>
+      <%= text_area_tag :body %>
+    </p>
+
+    <p>
+      <%= label_tag :correct %><br>
+      <%= check_box_tag :correct, false %>
+    </p>
+
+    <div><%= submit_tag 'Save' %></div>
+<% end %>

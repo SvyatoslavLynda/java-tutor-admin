@@ -1,0 +1,14 @@
+<h2>Edit an article:</h2>
+<%= form_tag("/articles/#{@article.article_id}", method: :put) do %>
+    <p>
+      <%= label_tag :title %><br>
+      <%= text_field_tag :title, @article.title %>
+    </p>
+
+    <p>
+      <%= label_tag :body %><br>
+      <%= text_area_tag :body, @article.body %>
+    </p>
+
+    <div><%= submit_tag 'Save' %></div>
+<% end %>
