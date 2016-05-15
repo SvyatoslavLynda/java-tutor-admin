@@ -1,0 +1,8 @@
+<%= form_tag('/answers', remote: true) do %>
+    <p>
+      <%= label_tag :body %><br>
+      <%= text_area_tag :body %>
+    </p>
+
+    <div><%= submit_tag 'Save' %></div>
+<% end %>
