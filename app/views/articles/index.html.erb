@@ -6,11 +6,11 @@
     <ul>
       <% @articles.each do |article| %>
           <li>
-            <%= link_to article.title, "/articles/#{article.article_id}" %>
+            <%= link_to article.title, "/articles/#{article._id}" %>
             |
-            <%= link_to 'Edit', "/articles/#{article.article_id}/edit" %>
+            <%= link_to 'Edit', "/articles/#{article._id}/edit" %>
             |
-            <%= link_to 'Delete', "/articles/#{article.article_id}", method: :delete %>
+            <%= link_to 'Delete', "/articles/#{article._id}", method: :delete %>
           </li>
       <% end %>
     </ul>

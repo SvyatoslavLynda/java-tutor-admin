@@ -1,9 +1,9 @@
-<h2>Answer <%= @answer.answer_id %></h2>
+<h2>Answer <%= @answer._id %></h2>
 
 <div>
-  <%= link_to 'Edit', "/answers/#{@answer.answer_id}/edit" %>
+  <%= link_to 'Edit', "/answers/#{@answer._id}/edit" %>
   |
-  <%= link_to 'Delete', "/answers/#{@answer.answer_id}", method: :delete %>
+  <%= link_to 'Delete', "/answers/#{@answer._id}", method: :delete %>
 </div>
 
 <pre>

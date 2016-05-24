@@ -1,5 +1,5 @@
 <h2>Edit an answer:</h2>
-<%= form_tag("/answers/#{@answer.answer_id}", method: :put) do %>
+<%= form_tag("/answers/#{@answer._id}", method: :put) do %>
 
     <%= hidden_field_tag :question_id, @answer.question_id %>
 

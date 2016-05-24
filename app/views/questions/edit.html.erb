@@ -1,5 +1,5 @@
 <h2>Edit a question:</h2>
-<%= form_tag("/questions/#{@question.question_id}", method: :put) do %>
+<%= form_tag("/questions/#{@question._id}", method: :put) do %>
 
     <%= hidden_field_tag :article_id, @question.article_id %>
 
