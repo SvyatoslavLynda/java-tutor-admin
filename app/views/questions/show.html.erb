@@ -13,33 +13,38 @@
 </pre>
 
 <% if @question.answers %>
-    <ul>
-      <% @question.answers.each do |answer| %>
-          <li class="<%= answer.correct ? 'correct' : '' %>">
-            <%= link_to "Answer #{answer._id}", "/answers/#{answer._id}" %>
-            |
-            <%= link_to 'Edit', "/answers/#{answer._id}/edit" %>
-            |
-            <%= link_to 'Delete', "/answers/#{answer._id}", method: :delete %>
-          </li>
-      <% end %>
-    </ul>
+  <ul>
+    <% @question.answers.each do |answer| %>
+      <li class="<%= answer.correct ? 'correct' : '' %>">
+        <%= link_to "Answer #{answer._id}", "/answers/#{answer._id}" %>
+        |
+        <%= link_to 'Edit', "/answers/#{answer._id}/edit" %>
+        |
+        <%= link_to 'Delete', "/answers/#{answer._id}", method: :delete %>
+      </li>
+    <% end %>
+  </ul>
 <% end %>
 
 <h2>Add an answer:</h2>
 <%= form_tag('/answers') do %>
 
-    <%= hidden_field_tag :question_id, @question._id %>
+  <%= hidden_field_tag :question_id, @question._id %>
 
-    <p>
-      <%= label_tag :body %><br>
-      <%= text_area_tag :body, nil, id: 'edit' %>
-    </p>
+  <p>
+    <%= label_tag :body %><br>
+    <%= text_area_tag :body, nil, id: 'edit' %>
+  </p>
 
-    <p>
-      <%= label_tag :correct %><br>
-      <%= check_box_tag :correct, true, false %>
-    </p>
+  <p>
+    <%= label_tag :position %><br>
+    <%= text_field_tag :position, 0 %>
+  </p>
 
-    <div><%= submit_tag 'Save' %></div>
+  <p>
+    <%= label_tag :correct %><br>
+    <%= check_box_tag :correct, true, false %>
+  </p>
+
+  <div><%= submit_tag 'Save' %></div>
 <% end %>

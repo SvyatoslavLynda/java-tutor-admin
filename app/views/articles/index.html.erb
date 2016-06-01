@@ -1,17 +1,19 @@
-<h2>Articles:</h2>
+<div class="container">
+  <h2>Articles:</h2>
 
-<%= link_to 'Add an article', '/articles/new' %>
+  <%= link_to 'Add an article', '/articles/new' %>
 
-<% if @articles %>
+  <% if @articles %>
     <ul>
       <% @articles.each do |article| %>
-          <li>
-            <%= link_to article.title, "/articles/#{article._id}" %>
-            |
-            <%= link_to 'Edit', "/articles/#{article._id}/edit" %>
-            |
-            <%= link_to 'Delete', "/articles/#{article._id}", method: :delete %>
-          </li>
+        <li>
+          <%= link_to article.title, "/articles/#{article._id}" %>
+          |
+          <%= link_to 'Edit', "/articles/#{article._id}/edit" %>
+          |
+          <%= link_to 'Delete', "/articles/#{article._id}", method: :delete %>
+        </li>
       <% end %>
     </ul>
-<% end %>
+  <% end %>
+</div>

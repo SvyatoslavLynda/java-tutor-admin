@@ -11,28 +11,33 @@
 </pre>
 
 <% if @article.questions %>
-    <ul>
-      <% @article.questions.each do |question| %>
-          <li>
-            <%= link_to "Question #{question._id}", "/questions/#{question._id}" %>
-            |
-            <%= link_to 'Edit', "/questions/#{question._id}/edit" %>
-            |
-            <%= link_to 'Delete', "/questions/#{question._id}", method: :delete %>
-          </li>
-      <% end %>
-    </ul>
+  <ul>
+    <% @article.questions.each do |question| %>
+      <li>
+        <%= link_to "Question #{question._id}", "/questions/#{question._id}" %>
+        |
+        <%= link_to 'Edit', "/questions/#{question._id}/edit" %>
+        |
+        <%= link_to 'Delete', "/questions/#{question._id}", method: :delete %>
+      </li>
+    <% end %>
+  </ul>
 <% end %>
 
 <h2>Add a question:</h2>
 <%= form_tag('/questions') do %>
 
-    <%= hidden_field_tag :article_id, @article._id %>
+  <%= hidden_field_tag :article_id, @article._id %>
 
-    <p>
-      <%= label_tag :body %><br>
-      <%= text_area_tag :body, nil, id: 'edit' %>
-    </p>
+  <p>
+    <%= label_tag :body %><br>
+    <%= text_area_tag :body, nil, id: 'edit' %>
+  </p>
 
-    <div><%= submit_tag 'Save' %></div>
+  <p>
+    <%= label_tag :position %><br>
+    <%= text_field_tag :position, 0 %>
+  </p>
+
+  <div><%= submit_tag 'Save' %></div>
 <% end %>
