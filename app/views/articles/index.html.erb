@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>Articles:</h2>
+  <h2>Articles</h2>
 
   <%= link_to 'Add an article', '/articles/new' %>
 
@@ -9,9 +9,12 @@
         <li>
           <%= link_to article.title, "/articles/#{article._id}" %>
           |
-          <%= link_to 'Edit', "/articles/#{article._id}/edit" %>
-          |
-          <%= link_to 'Delete', "/articles/#{article._id}", method: :delete %>
+          <%= link_to "/articles/#{article._id}/edit" do %>
+            <i class="fa fa-pencil-square-o" aria-hidden="true"> </i>
+          <% end %>
+          <%= link_to "/articles/#{article._id}", method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <i class="fa fa-trash-o" aria-hidden="true"> </i>
+          <% end %>
         </li>
       <% end %>
     </ul>

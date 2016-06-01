@@ -1,20 +1,22 @@
-<h2>Edit an article:</h2>
-<%= form_tag("/articles/#{@article._id}", method: :put) do %>
-  <p>
-    <%= label_tag :title %><br>
-    <%= text_field_tag :title, @article.title %>
-  </p>
+<div class="container">
+  <h2>Edit an article</h2>
+  <%= form_tag("/articles/#{@article._id}", method: :put) do %>
+    <p>
+      <%= label_tag :title %><br>
+      <%= text_field_tag :title, @article.title %>
+    </p>
 
-  <p>
-    <%= label_tag :body %><br>
-    <%= text_area_tag :body, @article.body, id: 'edit' %>
-  </p>
+    <p>
+      <%= label_tag :body %><br>
+      <%= text_area_tag :body, @article.body, id: 'edit' %>
+    </p>
 
-  <p>
-    <%= label_tag :position %><br>
-    <%= text_field_tag :position, @article.position %>
-  </p>
+    <p>
+      <%= label_tag :position %><br>
+      <%= text_field_tag :position, @article.position %>
+    </p>
 
 
-  <div><%= submit_tag 'Save' %></div>
-<% end %>
+    <div><%= submit_tag 'Save' %></div>
+  <% end %>
+</div>

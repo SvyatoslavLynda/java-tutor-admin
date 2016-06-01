@@ -1,11 +1,17 @@
-<h2>Answer <%= @answer._id %></h2>
+<div class="container">
+  <h2>Answer <%= @answer._id %></h2>
 
-<div>
-  <%= link_to 'Edit', "/answers/#{@answer._id}/edit" %>
-  |
-  <%= link_to 'Delete', "/answers/#{@answer._id}", method: :delete %>
+  <div>
+    <%= link_to "/answers/#{@answer._id}/edit" do %>
+      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+    <% end %>
+    |
+    <%= link_to "/answers/#{@answer._id}", method: :delete, data: { confirm: 'Are you sure?' } do %>
+      <i class="fa fa-trash-o" aria-hidden="true"> </i>
+    <% end %>
+  </div>
+
+  <pre>
+  <%= @answer.body %>
+  </pre>
 </div>
-
-<pre>
-<%= @answer.body %>
-</pre>

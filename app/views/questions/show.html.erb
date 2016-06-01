@@ -1,50 +1,59 @@
-<h2>Question <%= @question._id %></h2>
+<div class="container">
+  <h2>Question <%= @question._id %></h2>
 
-<div>
-  <%= link_to "Question #{@question._id}", "/questions/#{@question._id}" %>
-  |
-  <%= link_to 'Edit', "/questions/#{@question._id}/edit" %>
-  |
-  <%= link_to 'Delete', "/questions/#{@question._id}", method: :delete %>
-</div>
+  <div>
+    <%= link_to "/questions/#{@question._id}/edit" do %>
+      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+    <% end %>
+    |
+    <%= link_to "/questions/#{@question._id}", method: :delete, data: { confirm: 'Are you sure?' } do %>
+      <i class="fa fa-trash-o" aria-hidden="true"> </i>
+    <% end %>
+  </div>
 
 <pre>
 <%= @question.body %>
 </pre>
 
-<% if @question.answers %>
-  <ul>
-    <% @question.answers.each do |answer| %>
-      <li class="<%= answer.correct ? 'correct' : '' %>">
-        <%= link_to "Answer #{answer._id}", "/answers/#{answer._id}" %>
-        |
-        <%= link_to 'Edit', "/answers/#{answer._id}/edit" %>
-        |
-        <%= link_to 'Delete', "/answers/#{answer._id}", method: :delete %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
+  <% if @question.answers.present? %>
+    <h4>Answers</h4>
+    <ul>
+      <% @question.answers.each do |answer| %>
+        <li class="<%= answer.correct ? 'correct' : '' %>">
+          <%= link_to "Answer #{answer._id}", "/answers/#{answer._id}" %>
+          |
+          <%= link_to "/answers/#{answer._id}/edit" do %>
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+          <% end %>
+          |
+          <%= link_to "/answers/#{answer._id}", method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <i class="fa fa-trash-o" aria-hidden="true"> </i>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 
-<h2>Add an answer:</h2>
-<%= form_tag('/answers') do %>
+  <h4>Add an answer:</h4>
+  <%= form_tag('/answers') do %>
 
-  <%= hidden_field_tag :question_id, @question._id %>
+    <%= hidden_field_tag :question_id, @question._id %>
 
-  <p>
-    <%= label_tag :body %><br>
-    <%= text_area_tag :body, nil, id: 'edit' %>
-  </p>
+    <p>
+      <%= label_tag :body %><br>
+      <%= text_area_tag :body, nil, id: 'edit' %>
+    </p>
 
-  <p>
-    <%= label_tag :position %><br>
-    <%= text_field_tag :position, 0 %>
-  </p>
+    <p>
+      <%= label_tag :position %><br>
+      <%= text_field_tag :position, 0 %>
+    </p>
 
-  <p>
-    <%= label_tag :correct %><br>
-    <%= check_box_tag :correct, true, false %>
-  </p>
+    <p>
+      <%= label_tag :correct %><br>
+      <%= check_box_tag :correct, true, false %>
+    </p>
 
-  <div><%= submit_tag 'Save' %></div>
-<% end %>
+    <div><%= submit_tag 'Save' %></div>
+  <% end %>
+</div>

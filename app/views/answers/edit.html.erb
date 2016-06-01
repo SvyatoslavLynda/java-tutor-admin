@@ -1,22 +1,24 @@
-<h2>Edit an answer:</h2>
-<%= form_tag("/answers/#{@answer._id}", method: :put) do %>
+<div class="container">
+  <h2>Edit an answer</h2>
+  <%= form_tag("/answers/#{@answer._id}", method: :put) do %>
 
-  <%= hidden_field_tag :question_id, @answer.question_id %>
+    <%= hidden_field_tag :question_id, @answer.question_id %>
 
-  <p>
-    <%= label_tag :body %><br>
-    <%= text_area_tag :body, @answer.body, id: 'edit' %>
-  </p>
+    <p>
+      <%= label_tag :body %><br>
+      <%= text_area_tag :body, @answer.body, id: 'edit' %>
+    </p>
 
-  <p>
-    <%= label_tag :correct %><br>
-    <%= check_box_tag :correct, @answer.correct, @answer.correct %>
-  </p>
+    <p>
+      <%= label_tag :correct %><br>
+      <%= check_box_tag :correct, @answer.correct, @answer.correct %>
+    </p>
 
-  <p>
-    <%= label_tag :position %><br>
-    <%= text_field_tag :position, @answer.position %>
-  </p>
+    <p>
+      <%= label_tag :position %><br>
+      <%= text_field_tag :position, @answer.position %>
+    </p>
 
-  <div><%= submit_tag 'Save' %></div>
-<% end %>
+    <div><%= submit_tag 'Save' %></div>
+  <% end %>
+</div>

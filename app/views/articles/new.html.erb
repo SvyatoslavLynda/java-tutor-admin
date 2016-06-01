@@ -1,19 +1,21 @@
-<h2>Add an article:</h2>
-<%= form_tag('/articles') do %>
-  <p>
-    <%= label_tag :title %><br>
-    <%= text_field_tag :title %>
-  </p>
+<div class="container">
+  <h2>Add an article</h2>
+  <%= form_tag('/articles') do %>
+    <p>
+      <%= label_tag :title %><br>
+      <%= text_field_tag :title %>
+    </p>
 
-  <p>
-    <%= label_tag :body %><br>
-    <%= text_area_tag :body, nil, id: 'edit' %>
-  </p>
+    <p>
+      <%= label_tag :body %><br>
+      <%= text_area_tag :body, nil, id: 'edit' %>
+    </p>
 
-  <p>
-    <%= label_tag :position %><br>
-    <%= text_field_tag :position, 0 %>
-  </p>
+    <p>
+      <%= label_tag :position %><br>
+      <%= text_field_tag :position, 0 %>
+    </p>
 
-  <div><%= submit_tag 'Save' %></div>
-<% end %>
+    <div><%= submit_tag 'Save' %></div>
+  <% end %>
+</div>

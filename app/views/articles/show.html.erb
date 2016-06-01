@@ -1,43 +1,54 @@
-<h2><%= @article.title %></h2>
+<div class="container">
+  <h2><%= @article.title %></h2>
 
-<div>
-  <%= link_to 'Edit', "/articles/#{@article._id}/edit" %>
-  |
-  <%= link_to 'Delete', "/articles/#{@article._id}", method: :delete %>
-</div>
+  <div>
+    <%= link_to "/articles/#{@article._id}/edit" do %>
+      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+    <% end %>
+    |
+    <%= link_to "/articles/#{@article._id}", method: :delete, data: { confirm: 'Are you sure?' } do %>
+      <i class="fa fa-trash-o" aria-hidden="true"> </i>
+    <% end %>
+  </div>
 
 <pre>
 <%= @article.body %>
 </pre>
 
-<% if @article.questions %>
-  <ul>
-    <% @article.questions.each do |question| %>
-      <li>
-        <%= link_to "Question #{question._id}", "/questions/#{question._id}" %>
-        |
-        <%= link_to 'Edit', "/questions/#{question._id}/edit" %>
-        |
-        <%= link_to 'Delete', "/questions/#{question._id}", method: :delete %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
+  <% if @article.questions.present? %>
+    <h4>Questions</h4>
+    <ul>
+      <% @article.questions.each do |question| %>
+        <li>
+          <%= link_to "Question #{question._id}", "/questions/#{question._id}" %>
+          |
+          <%= link_to "/questions/#{question._id}/edit" do %>
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+          <% end %>
+          |
+          <%= link_to "/questions/#{question._id}", method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <i class="fa fa-trash-o" aria-hidden="true"> </i>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 
-<h2>Add a question:</h2>
-<%= form_tag('/questions') do %>
+  <h4>Add a question:</h4>
+  <%= form_tag('/questions') do %>
 
-  <%= hidden_field_tag :article_id, @article._id %>
+    <%= hidden_field_tag :article_id, @article._id %>
 
-  <p>
-    <%= label_tag :body %><br>
-    <%= text_area_tag :body, nil, id: 'edit' %>
-  </p>
+    <p>
+      <%= label_tag :body %><br>
+      <%= text_area_tag :body, nil, id: 'edit' %>
+    </p>
 
-  <p>
-    <%= label_tag :position %><br>
-    <%= text_field_tag :position, 0 %>
-  </p>
+    <p>
+      <%= label_tag :position %><br>
+      <%= text_field_tag :position, 0 %>
+    </p>
 
-  <div><%= submit_tag 'Save' %></div>
-<% end %>
+    <div><%= submit_tag 'Save' %></div>
+  <% end %>
+</div>
